@@ -1,0 +1,35 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Picture</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Nb. Books</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set nb = 0 %}
+        {% if authors is not empty %}
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td><img src="{{ author.picture }}" alt="Image"></td>
+                    <td>{{ author.username | upper }}</td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.nb_books }}</td>
+                    {% set nb = author.nb_books + nb %}
+                    <td><a href="{{ path('showAuthor', {'id': author.id}) }}">Details</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">No Authors available for now.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+Number of books is: {{ nb }}<br>
+Number of authors is: {{ authors | length }}

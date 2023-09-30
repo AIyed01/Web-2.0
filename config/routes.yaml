@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+showAuthor:
+    path: /details/{id}
+    controller: App\Controller\YourController::details
